@@ -1,14 +1,12 @@
 import java.util.Scanner;
 
-public class Tannenbaum {
+public class TannenbaumZwei {
     public static void main(String[] args) {
-        int height = 5; // Höhe des Baumes
+        int height = 5;
         Scanner sc = new Scanner(System.in);
-        
+
         System.out.print("\033[H\033[2J");
         System.out.flush();
-
-        // Eingabe der Höhe des Baumes
         System.out.println("Willkommen zum Tannenbaum-Generator!");
         System.out.print("Geben Sie die Höhe des Baumes ein (Standard ist 5): ");
         String input = sc.nextLine();
@@ -26,25 +24,16 @@ public class Tannenbaum {
         }
         sc.close();
 
-        // Baum zeichnen
+        // Baum zeichnen (eine Schleife)
         for (int i = 0; i < height; i++) {
-            // Leerzeichen vor dem Baum
-            for (int j = 0; j < height - i - 1; j++) {
-                System.out.print(" ");
-            }
-            // Baumsterne
-            for (int j = 0; j < 2 * i + 1; j++) {
-                System.out.print("*");
-            }
-            System.out.println();
+            String sp = " ".repeat(height - i - 1);
+            String st = "*".repeat(2 * i + 1);
+            System.out.println(sp + st);
         }
-
-        // Stamm zeichnen
+        // Stamm zeichnen (eine Schleife)
+        String bs = " ".repeat(height - 1);
         for (int i = 0; i < height / 2; i++) {
-            for (int j = 0; j < height - 1; j++) {
-                System.out.print(" ");
-            }
-            System.out.println("*");
+            System.out.println(bs + "*");
         }
     }
 }
