@@ -13,7 +13,6 @@ public class TicTacToe {
         while (spielen) {
             String g1 = "1", g2 = "2", g3 = "3", g4 = "4", g5 = "5", g6 = "6", g7 = "7", g8 = "8", g9 = "9";
             String playerX = "X", playerY = "O";
-            // int Zug = 0;
             boolean gameOver = false;
             boolean changeplayer = true; // true = Spieler X, false = Spieler O
 
@@ -89,12 +88,11 @@ public class TicTacToe {
                 }
 
                 if (gueltigerZug) {
-                    // Zug++;
                     changeplayer = !changeplayer; // Spieler wechseln
                 } 
-            } while (/*Zug < 9 && */!gameOver);
+            } while (!gameOver);
 
-            System.out.print("-=[ Nochmals spielen? (j/n): ");
+            System.out.print("-=[ Nochmal spielen? (j/n): ");
             String again = sc.nextLine();
             if (!again.equalsIgnoreCase("n")) {
                 // Bildschirm leeren
