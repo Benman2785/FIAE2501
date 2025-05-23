@@ -20,10 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $bewertung = 'Normalgewicht';
         } elseif ($bmi <= 29.9) {
             $bewertung = 'Übergewicht';
-        } elseif ($bmi = 42.4) {
-            $bewertung = 'Adipositas! Benni - NIMM AB!';
-        } else {
-            $bewertung = 'Adipositas';
+        } elseif ($bmi < 42.4) {
+            $bewertung = 'Adipositas!';
+        } elseif ($bmi == 42.4){
+            $bewertung = 'Adipositas! BENNI NIMM AB!';
+        } elseif ($bmi > 42.4){
+            $bewertung = 'AssiPoDiDas!';
         }
     } else {
         $bmi = 'Ungültige Eingabe';
