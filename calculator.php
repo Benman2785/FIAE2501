@@ -144,6 +144,12 @@ if (is_numeric($btn) && $_SESSION['check'] === true || $btn === '.') {
             font-size: 18px;
             margin: 3px;
         }
+        #istgl {
+            width: 258px;
+            height: 50px;
+            font-size: 18px;
+            margin: 3px;
+        }
     </style>
 
     <!-- hier Tastendrücke -->
@@ -176,22 +182,26 @@ if (is_numeric($btn) && $_SESSION['check'] === true || $btn === '.') {
             <input id="operator" type="text" name="operator" value="<?= htmlspecialchars($_SESSION['operator']) ?>" readonly>
             <input id="display" type="text" name="display" value="<?= htmlspecialchars($_SESSION['display']) ?>" readonly>
         </div>
-        <?php
-        $buttons = [
-            ['7', '8', '9', '/'],
-            ['4', '5', '6', '*'],
-            ['1', '2', '3', '-'],
-            ['.', '0', '√', '+'],
-            ['MS', 'MR', 'MC', 'C'],
-            ['=']
-        ];
-        foreach ($buttons as $row) {
-            foreach ($row as $btn) {
-                echo "<button type='submit' name='btn' value='$btn'>$btn</button>";
-            }
-            echo "<br>";
+    <?php
+    $buttons = [
+        ['7', '8', '9', '/'],
+        ['4', '5', '6', '*'],
+        ['1', '2', '3', '-'],
+        ['.', '0', '√', '+'],
+        ['MS', 'MR', 'MC', 'C'],
+        ['='] // Zeile überspringen
+    ];
+
+    for ($i = 0; $i < count($buttons) - 1; $i++) {
+        foreach ($buttons[$i] as $btn) {
+        echo "<button type='submit' name='btn' value='$btn'>$btn</button>";
         }
-        ?>
+        echo "<br>";
+    }
+    $lastRow = end($buttons);
+    $btn = $lastRow[0];
+    echo "<button type='submit' id='istgl' name='btn' value='$btn'>$btn</button>";
+    ?>
     </form>
 </body>
 </html>
