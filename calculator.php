@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
     $btn = $_POST['btn'];
 
     // Wenn Zahl oder Punkt
-if (is_numeric($btn) && $_SESSION['check'] === true || $btn === '.') {
+if (is_numeric($btn) && $_SESSION['check'] === true && $_SESSION['wert1'] !== null || $btn === '.') {
     $_SESSION['display'] = '';
     $_SESSION['display'] .= $btn;
     $_SESSION['check'] = false;
