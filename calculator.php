@@ -6,17 +6,20 @@ if (!isset($_SESSION['display'])) $_SESSION['display'] = '';
 if (!isset($_SESSION['operator'])) $_SESSION['operator'] = '';
 if (!isset($_SESSION['wert1'])) $_SESSION['wert1'] = null;
 if (!isset($_SESSION['memory'])) $_SESSION['memory'] = null;
-if (!isset($_SESSION['check'])) $_SESSION['check'] = false;
+if (!isset($_SESSION['check'])) $_SESSION['check'] = true;
 
 // Eingabe verarbeiten
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
     $btn = $_POST['btn'];
 
     // Wenn Zahl oder Punkt
-if (is_numeric($btn) && $_SESSION['check'] === true && $_SESSION['wert1'] !== null || $btn === '.') {
+if (is_numeric($btn) && $_SESSION['check'] === true || $btn === '.') {
+    $_SESSION['wert1'] = null;
     $_SESSION['display'] = '';
     $_SESSION['display'] .= $btn;
     $_SESSION['check'] = false;
+} elseif (is_numeric($btn) && $_SESSION['check'] === false || $btn === '.') {
+    $_SESSION['display'] .= $btn;
 } elseif (is_numeric($btn) || $btn === '.') {
     $_SESSION['display'] .= $btn;
 }
@@ -43,6 +46,7 @@ if (is_numeric($btn) && $_SESSION['check'] === true && $_SESSION['wert1'] !== nu
         if ($_SESSION['display'] !== '') {
             if ($_SESSION['operator'] !== '' && $_SESSION['wert1'] !== null) {
                 // Zwischenberechnung
+                $_SESSION['check'] = false; 
                 $wert2 = floatval($_SESSION['display']);
                 $wert1 = $_SESSION['wert1'];
                 $op = $_SESSION['operator'];
@@ -54,10 +58,13 @@ if (is_numeric($btn) && $_SESSION['check'] === true && $_SESSION['wert1'] !== nu
 
                 $_SESSION['wert1'] = $wert1;
             } else {
+                $_SESSION['check'] = false; 
                 $_SESSION['wert1'] = floatval($_SESSION['display']);
             }
+            $_SESSION['check'] = false; 
             $_SESSION['display'] = '';
         }
+        $_SESSION['check'] = false; 
         $_SESSION['operator'] = $btn;
     }
 
