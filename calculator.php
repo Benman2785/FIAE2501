@@ -12,51 +12,51 @@ if (!isset($_SESSION['check'])) $_SESSION['check'] = true;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
     $btn = $_POST['btn'];
 
-    // Wenn Zahl oder Punkt
-if (is_numeric($btn) && $_SESSION['check'] === true || $btn === '.') {
+// Wenn Zahl oder Punkt
+if (is_numeric($btn) && $_SESSION['check'] === true) {
     $_SESSION['wert1'] = null;
     $_SESSION['display'] = '';
     $_SESSION['display'] .= $btn;
     $_SESSION['check'] = false;
-} elseif (is_numeric($btn) && $_SESSION['check'] === false || $btn === '.') {
+} elseif (is_numeric($btn) && $_SESSION['check'] === false) {
     $_SESSION['display'] .= $btn;
-} elseif (is_numeric($btn) || $btn === '.') {
+} elseif (is_numeric($btn)) {
     $_SESSION['display'] .= $btn;
-}
-
+} elseif ($btn === '.' && $_SESSION['display'] === '') {
+    $_SESSION['display'] = 0;
+    $_SESSION['display'] .= $btn;
+} elseif ($btn === '.' && $_SESSION['display'] !== '') {
+    $_SESSION['display'] .= $btn;
+} elseif ($btn === '√') {
     // Quadratwurzel direkt berechnen
-    elseif ($btn === '√') {
-        if ($_SESSION['display'] !== '') {
-            $wert = floatval($_SESSION['display']);
-            if ($wert >= 0) {
-                $ergebnis = sqrt($wert);
-                $_SESSION['display'] = (string)$ergebnis;
-                $_SESSION['operator'] = '√';
-                $_SESSION['wert1'] = $ergebnis;
-            } else {
-                $_SESSION['display'] = 'Fehler';
-                $_SESSION['operator'] = '';
-                $_SESSION['wert1'] = null;
-            }
+    if ($_SESSION['display'] !== '') {
+        $wert = floatval($_SESSION['display']);
+    if ($wert >= 0) {
+        $ergebnis = sqrt($wert);
+        $_SESSION['display'] = (string)$ergebnis;
+        $_SESSION['operator'] = '√';
+        $_SESSION['wert1'] = $ergebnis;
+    } else {
+        $_SESSION['display'] = 'Fehler';
+        $_SESSION['operator'] = '';
+        $_SESSION['wert1'] = null;
         }
     }
+} elseif (in_array($btn, ['+', '-', '*', '/'])) {
+//Operator gedrückt
+    if ($_SESSION['display'] !== '') {
+        if ($_SESSION['operator'] !== '' && $_SESSION['wert1'] !== null) {
+        // Zwischenberechnung
+            $_SESSION['check'] = false;
+            $wert2 = floatval($_SESSION['display']);
+            $wert1 = $_SESSION['wert1'];
+            $op = $_SESSION['operator'];
+            if ($op === '+') $wert1 += $wert2;
+            elseif ($op === '-') $wert1 -= $wert2;
+            elseif ($op === '*') $wert1 *= $wert2;
+            elseif ($op === '/') $wert1 = ($wert2 != 0) ? $wert1 / $wert2 : 'Fehler';
 
-    // Operator gedrückt
-    elseif (in_array($btn, ['+', '-', '*', '/'])) {
-        if ($_SESSION['display'] !== '') {
-            if ($_SESSION['operator'] !== '' && $_SESSION['wert1'] !== null) {
-                // Zwischenberechnung
-                $_SESSION['check'] = false; 
-                $wert2 = floatval($_SESSION['display']);
-                $wert1 = $_SESSION['wert1'];
-                $op = $_SESSION['operator'];
-
-                if ($op === '+') $wert1 += $wert2;
-                elseif ($op === '-') $wert1 -= $wert2;
-                elseif ($op === '*') $wert1 *= $wert2;
-                elseif ($op === '/') $wert1 = ($wert2 != 0) ? $wert1 / $wert2 : 'Fehler';
-
-                $_SESSION['wert1'] = $wert1;
+            $_SESSION['wert1'] = $wert1;
             } else {
                 $_SESSION['check'] = false; 
                 $_SESSION['wert1'] = floatval($_SESSION['display']);
@@ -66,9 +66,7 @@ if (is_numeric($btn) && $_SESSION['check'] === true || $btn === '.') {
         }
         $_SESSION['check'] = false; 
         $_SESSION['operator'] = $btn;
-    }
-
-    elseif ($btn === '=' & $_SESSION['operator'] === '√') {
+    } elseif ($btn === '=' & $_SESSION['operator'] === '√') {
         $_SESSION['display'] = '';
         $_SESSION['operator'] = '';
         $_SESSION['check'] = false;
@@ -106,7 +104,9 @@ if (is_numeric($btn) && $_SESSION['check'] === true || $btn === '.') {
     }
     }
 ?>
-
+<!-- HTML -->
+<!-- HTML -->
+<!-- HTML -->
 <!DOCTYPE html>
 <html>
 <head>
