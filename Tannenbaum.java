@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Tannenbaum {
     public static void main(String[] args) {
-        int height = 5; // Höhe des Baumes
+        int height = 0;
         Scanner sc = new Scanner(System.in);
         
         System.out.print("\033[H\033[2J");
@@ -38,9 +38,8 @@ public class Tannenbaum {
             }
             System.out.println();
         }
-
         // Stamm zeichnen
-        for (int i = 0; i < height / 2; i++) {
+        for (int i = 0; i < height / 4; i++) {
             for (int j = 0; j < height - 1; j++) {
                 System.out.print(" ");
             }
