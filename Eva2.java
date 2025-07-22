@@ -1,6 +1,6 @@
 import java.util.Scanner;
  
-public class eva2 {
+public class Eva2 {
  
     public static void main(String[] args) {
         int preis;
