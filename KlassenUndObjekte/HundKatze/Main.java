@@ -6,5 +6,6 @@ public class Main {
         h1.makeSound();
         k1.makeSound();
     // t1.makeSound();
+        System.out.println(h1);
     }
 }
