@@ -7,4 +7,9 @@ public class Hund extends Tier {
         this.lieblingsSpielzeug = lieblingsSpielzeug;
         this.besitzer = besitzer;
     }
+    @Override
+    public void makeSound(){
+        super.makeSound();
+        System.out.println(name + " bellt!");
+    }
 }

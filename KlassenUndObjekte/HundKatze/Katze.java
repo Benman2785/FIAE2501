@@ -5,4 +5,10 @@ public class Katze extends Tier {
         super(name, alter);
         this.sklave = sklave;
     }
+    
+    @Override
+    public void makeSound(){
+        super.makeSound();
+        System.out.println(name + " miaut!");
+    }
 }

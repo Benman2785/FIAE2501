@@ -1,6 +1,6 @@
 abstract class Tier {
-    private String name;
-    private int alter;
+    protected String name;
+    protected int alter;
     
     public Tier(String name, int alter){
         this.name = name;
@@ -8,6 +8,6 @@ abstract class Tier {
     }
 
     public void makeSound(){
-        System.out.println(name + " macht Krach");
+        System.out.print(name + " macht Krach -> ");
     }
 }
