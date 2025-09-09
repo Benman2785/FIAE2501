@@ -21,7 +21,7 @@ public class main {
         System.out.println("Eingabe des/der Loewen");
         int i = 0;
         while (i < anzahlLoewen) {
-            if (i = 0){
+            if (i == 0){
                 System.out.println("Name für den Loewe:");
                 String nameLoewe = sc.next();
                 System.out.println("Gattung des Loewen:");
@@ -44,7 +44,7 @@ public class main {
         System.out.println("Eingabe des/der Elefanten");
         int j = 0;
         while (j < anzahlElefanten) {
-            if (j = 0){
+            if (j == 0){
                 System.out.println("Name für den Elefanten:");
                 String nameElefant = sc.next();
                 System.out.println("Gattung des Elefanten:");
@@ -105,5 +105,6 @@ public class main {
             }
         }
         System.out.println("Der Zoo muss nun leider dauerhaft schliessen");
+        }
     }
 }
