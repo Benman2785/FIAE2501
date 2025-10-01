@@ -1,0 +1,27 @@
+classDiagram
+
+    class VersicherungsObjekt {
+        <<abstract>>
+        #neupreis : double
+        #baujahr : date
+        #schadenshoehe : double
+        # abstract restWertBerechnung() void
+        +auszahlen() void
+    }
+
+    class KfZ {
+        -hersteller : String
+        -typSchluessel : String
+        -laufLeistung : double
+        +restWertBerechnung() void
+    }
+
+    class Immobilie {
+        -wohnFlaeche : double
+        -lageBewertung : int
+        +getLagebewertung() void
+        +restWertBerechnung() void
+    }
+
+    VersicherungsObjekt <|-- KfZ
+    VersicherungsObjekt <|-- Immobilie
