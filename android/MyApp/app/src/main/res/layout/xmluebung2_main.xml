@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Root Element und auch ElternElement (Parent)-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+
+
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/mid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:textSize="50dp"
+                android:text="@string/test"
+                android:gravity="center"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/top3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="2.5dp"
+                android:layout_marginTop="5dp"
+                app:layout_goneMarginBottom="5dp"
+                android:text="@string/test"
+                android:gravity="center"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/top2"
+                app:layout_constraintEnd_toStartOf="@+id/vert"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                app:layout_goneMarginBottom="5dp"
+                android:text="@string/test"
+                android:gravity="center"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/top2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/vert"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                app:layout_goneMarginBottom="2.5dp"
+                android:text="@string/test"
+                android:gravity="center"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/vert"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            </TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_marginTop="5dp"
+                app:layout_goneMarginBottom="2.5dp"
+                android:text="@string/test"
+                android:gravity="center"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/vert"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            </TextView>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/top3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.33" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/top2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.66" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vert"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mid">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonA"
+                    app:cornerRadius="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="2.5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/buttonA"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/bot1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </com.google.android.material.button.MaterialButton>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/bot1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.33" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bot1">
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/mid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5">
+
+        </androidx.constraintlayout.widget.Guideline>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

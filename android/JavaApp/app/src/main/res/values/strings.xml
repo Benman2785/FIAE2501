@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">JavaApp</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in2">SIGN IN</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="forgot_your_password">Forgot your Password?</string>
+    <string name="sign_in_via_facebook_or_twitter">sign in via facebook or twitter</string>
+    <string name="or_enter_in_your_account_info">or enter in your account info</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="klausur_xml">Klausur XML</string>
+    <string name="benjamin_hoffmeister">Benjamin Hoffmeister</string>
+    <string name="knaller_l_gin_m_d_fb_ehr_volk_reich">Knaller Lögin müd FB ehr-volk-reich</string>
+    <string name="knalla_l_g_n_m_d_twitter_ehr_volk_reich">Knalla Lögün müd Twitter ehr-Volk-reich</string>
+</resources>
