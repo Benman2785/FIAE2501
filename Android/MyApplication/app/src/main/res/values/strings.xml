@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="text_0">Text</string>
+    <string name="text_1l">Text</string>
+    <string name="text_2l">Text</string>
+    <string name="edit_text_1r">Edit Text</string>
+    <string name="edit_text_2r">Edit Text</string>
+    <string name="button">Button</string>
+
+</resources>

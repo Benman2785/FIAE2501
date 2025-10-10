@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="main_title">Hauptmenü</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="speichern">Speichern</string>
+    <string name="buttonA">Button A</string>
+    <string name="buttonB">Button B</string>
+    <string name="test">Test</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="go">Go!</string>
+    <string name="loginF">Login With Facebook</string>
+    <string name="loginT">Login With Twitter</string>
+    <string name="createA">Create an Account</string>
+    <string name="impressum">About us | Contact</string>
+    <string name="del">DEL</string>
+    <string name="_0">0</string>
+    <string name="_2">2</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_4">4</string>
+    <string name="_3">3</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_1">1</string>
+    <string name="_5">5</string>
+    <string name="textview">TextView</string>
+    <string name="h_ntagrunt">hüntagrunt</string>
+    <string name="goil">goil</string>
+    <string name="was_ein_lauch">was_ein_lauch</string>
+    <string name="kreis">kreis</string>
+    <string name="android_table_layout_example">\u0009\u0009\u0009Android Table Layout Example</string>
+    <string name="row_1">Row 1</string>
+    <string name="row_2_ncolumn_1">Row 2\nColumn 1</string>
+    <string name="row_2_ncolumn_2">Row 2\nColumn 2</string>
+    <string name="row_2_ncolumn_3">Row 2\nColumn 3</string>
+    <string name="row_3_ncolumn_1">Row 3\nColumn 1</string>
+    <string name="row_3_ncolumn_2">Row 3\nColumn 2</string>
+    <string name="row_4_ncolumn_1">Row 4\nColumn 1</string>
+    <string name="row_4_ncolumn_2">Row 4\nColumn 2</string>
+    <string name="row_5_ncolumn_1">Row 5\nColumn 1</string>
+    <string name="viralandroid_com">ViralAndroid.com</string>
+    <string name="w_hle_deine_sprache">wähle deine Sprache</string>
+    <string name="englisch">Englisch</string>
+    <string name="japanisch">Japanisch</string>
+    <string name="deutsch">Deutsch</string>
+    <string name="spanisch">Spanisch</string>
+    <string name="chinesisch">Chinesisch</string>
+    <string name="franz_sisch">Französisch</string>
+    <string name="arabisch">Arabisch</string>
+    <string name="weiter">weiter</string>
+    <string name="b_lt">Bült</string>
+
+    <string-array name="wochentage">
+        <item>Montag</item>
+        <item>Dienstag</item>
+        <item>Mittwoch</item>
+        <item>Donnerstag</item>
+        <item>Freitag</item>
+        <item>Samstag</item>
+        <item>Sonntag</item>
+    </string-array>
+</resources>

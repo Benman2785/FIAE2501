@@ -1,0 +1,154 @@
+/* forum.css */
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Body Styles */
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: auto;         /* Schmale Scrollbar */
+    scrollbar-color: #888 #444;    /* Daumen und Spur */
+}
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 3% 80% 17%;
+    height: 100%;
+    width: 100%;
+}
+/* Header Styles */
+.header1, .header2, .header3, .header4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.75em;
+    font-family: 'Oswald', Arial, sans-serif;
+    background-image: url('bck1.jpg'); /* Background image for header */
+    background-size: cover;
+    color: white; /* Text color */
+    font-weight: bold; /* Make header text bold */
+    width: 100%; /* Ensures the header spans the full width */
+    border: 1px solid darkgrey;
+}
+.header1 a, .header2 a, .header3 a, .header4 a {
+    color: white; /* Text color */
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border: 1px solid transparent; /* Border for button effect */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%; /* Ensures the link spans the full width */
+}
+/* Hover effect for header links */
+.header1 a:hover, .header2 a:hover, .header3 a:hover, .header4 a:hover {
+    background-color: #444; /* Darken background on hover */
+    /* transform: scale(1.05); Slightly increase size on hover */
+    width: 100%; /* Ensures hover effect spans the full width */
+}
+/* Menu Styles */
+.menu {
+    grid-column: 4 / 5;
+    grid-row: 2 / 4;
+    background-color: #333;
+}
+.menu a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Oswald', Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+    background-color: #444;
+    border-bottom: 1px solid #ccc;
+}
+.menu a:hover {
+    background-color: #555;
+}
+/* Main Content */
+#sidebar {
+    background: url(bck1.jpg) repeat-y;
+    background-size: cover;
+    font-family: 'Oswald', Arial, sans-serif;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: auto;         /* Schmale Scrollbar */
+    scrollbar-color: #888 #444;    /* Daumen und Spur */
+}
+#sidebar ul {
+    list-style-type: none;
+}
+#sidebar ul li {
+    margin: 1px 0;
+}
+/* Header Navigation Styles */
+#main-navigation ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+#main-navigation ul li a {
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+}
+.slaveiframe {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background: url('bck2.jpg') repeat-y;
+    background-size: cover;
+    color: white;
+}
+#siscroll {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: hidden; /* no scroll here; iframe does the scrolling */
+}
+.postarea {
+    position: relative;
+    grid-column: 1 / 4;
+    grid-row: 3;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    color: white;
+    overflow: hidden;
+    background: url(content.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 7px;
+}
+body::-webkit-scrollbar-track {
+    background: #444;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+}
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
