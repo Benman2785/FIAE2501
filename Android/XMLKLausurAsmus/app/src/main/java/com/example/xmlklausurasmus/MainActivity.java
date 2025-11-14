@@ -10,96 +10,99 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-/**
- * huhu
- */
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // 1. Java Objekte anlegen
-    Button btnFB, btnTw;
-    EditText inputUsername, inputPassword;
-    TextView forgotPwLeft, forgotPwRight, signIn;
+    // 1. Java Objekte anlagen:
+    Button btnFB, btnTW, btnFYP01, btnFYP02, btnSI;
+    EditText inputName, inputPW;
+
+    TextView tvSI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
-        mehr
-        zeilig
-         */
 
         // Layout festlegen
         setContentView(R.layout.activity_main);
 
-        // 2.  XML Elemente mit Javaobjekt verknüpfen
-
-        btnFB = findViewById(R.id.buttonFb);
+        // XML Elemente mit Javaobjekt verknüpfen
+        btnFB = findViewById(R.id.facebook);
         btnFB.setOnClickListener(this);
-        // anonymen Clicklistener
-        /*btnFB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("XXX", "Facebook Button anonym geklickt");
-            }
-        });*/
 
-        btnTw = findViewById(R.id.buttonTw);
-        btnTw.setOnClickListener(this);
+        btnTW = findViewById(R.id.twitter);
+        btnTW.setOnClickListener(this);
 
-        inputUsername = findViewById(R.id.editTextUsername);
-        inputPassword = findViewById(R.id.editTextPw);
+        btnFYP01 = findViewById(R.id.ForgotYourPassword01);
+        btnFYP01.setOnClickListener(this);
+        btnFYP02 = findViewById(R.id.ForgotYourPassword02);
+        btnFYP02.setOnClickListener(this);
 
-        forgotPwLeft = findViewById(R.id.forgotPwLeft);
-        forgotPwLeft.setOnClickListener(this);
-        forgotPwRight = findViewById(R.id.forgotPwRight);
-        forgotPwRight.setOnClickListener(this);
+        btnSI = findViewById(R.id.SignInButton);
+        btnSI.setOnClickListener(this);
 
-        signIn = findViewById(R.id.signInTV);
-        signIn.setOnClickListener(this);
+        inputName = findViewById(R.id.editName);
+        inputName.setClickable(true);
+
+        inputPW = findViewById(R.id.editPassword);
+        inputPW.setClickable(true);
+
+        tvSI = findViewById(R.id.SignIn);
+
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == btnFB.getId()) {
+        if (view.getId() == btnFB.getId()) {
             // neuen View laden
             // 1. Parameter von wo aufgerufen wird
             // 2. Parameter was aufgerufen werden soll (Zielactivity)
             // Expliziter Intent
 
             Intent fbIntent = new Intent(MainActivity.this, FacebookActivity.class);
-            // Werte dem Intent mitgeben
-            fbIntent.putExtra("username", "ike");
-            fbIntent.putExtra("pw", "geheim123");
+            fbIntent.putExtra("Username","ike");
+            fbIntent.putExtra("pw","123");
+
             startActivity(fbIntent);
 
-            Log.i("XXX", "Facebook Button geklickt");
+            Log.i("XXX","Facebook Button geklickt!");
         }
-        else if(view.getId() == btnTw.getId()) {
+        else if(view.getId() == btnTW.getId()) {
 
             Intent twIntent = new Intent(MainActivity.this, TwitterActivity.class);
-            // Werte dem Intent mitgeben
             startActivity(twIntent);
 
-            Log.i("XXX", "Twitter Button geklickt");
+            Log.i("XXX","Twitter Button geklickt!");
         }
-        else if(view.getId() == forgotPwLeft.getId() || view.getId() == forgotPwRight.getId()) {
-            Intent twIntent = new Intent(MainActivity.this, ForgotPwActivity.class);
-            startActivity(twIntent);
-            Log.i("XXX", "forgotPwLeft geklickt");
+        else if(view.getId() == btnFYP01.getId() || view.getId() == btnFYP02.getId()) {
+
+            Intent fypIntent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
+            startActivity(fypIntent);
+
+            Log.i("XXX","ForgotYourPassword01 Button geklickt!");
         }
-        else if(view.getId() == signIn.getId()) {
-            Log.i("XXX", "SignIn geklickt");
+        else if(view.getId() == btnSI.getId()) {
 
-            // Werte aus EditTexts herauslesen und speichern
-            String username = inputUsername.getText().toString();
-            String pw = inputPassword.getText().toString();
+            Intent signInIntent = new Intent(MainActivity.this, SignInActivity.class);
 
-            Intent fbIntent = new Intent(MainActivity.this, MainMenuActivity.class);
-            // Werte dem Intent mitgeben
-            fbIntent.putExtra("username", username);
-            fbIntent.putExtra("pw", pw);
-            startActivity(fbIntent);
+            String username = inputName.getText().toString();
+            String pw = inputPW.getText().toString();
 
+            checkLogInData(username, pw, signInIntent);
+
+            Log.i("XXX","SignInButton Button geklickt!");
+        }
+        else {
+            Log.i("XXX", "Nix geklickt!");
+        }
+    }
+    private void checkLogInData(String user,String pw, Intent signInIntent) {
+        if (user.equalsIgnoreCase("ike") && pw.equalsIgnoreCase("123")) {
+            startActivity(signInIntent);
+        } else {
+            System.out.println("Falsches Password!");
+            Intent reject = new Intent(MainActivity.this, RejectActivity.class);
+            startActivity(reject);
         }
     }
 }

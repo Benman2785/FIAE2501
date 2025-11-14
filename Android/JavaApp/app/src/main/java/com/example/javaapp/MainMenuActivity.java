@@ -1,4 +1,4 @@
-package com.example.xmlklausurasmus;
+package com.example.xmlklausurstromer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
