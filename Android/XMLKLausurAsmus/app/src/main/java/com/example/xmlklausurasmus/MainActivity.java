@@ -10,99 +10,105 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.xmlklausurasmus.db.DatabaseHelperOpen;
+import com.example.xmlklausurasmus.db.User;
 
+/**
+ * huhu
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    // 1. Java Objekte anlagen:
-    Button btnFB, btnTW, btnFYP01, btnFYP02, btnSI;
-    EditText inputName, inputPW;
-
-    TextView tvSI;
+    //nias geheim123
+    // 1. Java Objekte anlegen
+    Button btnFB, btnTw;
+    EditText inputUsername, inputPassword;
+    TextView forgotPwLeft, forgotPwRight, signIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        mehr
+        zeilig
+         */
 
         // Layout festlegen
         setContentView(R.layout.activity_main);
 
-        // XML Elemente mit Javaobjekt verknüpfen
-        btnFB = findViewById(R.id.facebook);
+        // 2.  XML Elemente mit Javaobjekt verknüpfen
+
+        btnFB = findViewById(R.id.buttonFb);
         btnFB.setOnClickListener(this);
+        // anonymen Clicklistener
+        /*btnFB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("XXX", "Facebook Button anonym geklickt");
+            }
+        });*/
 
-        btnTW = findViewById(R.id.twitter);
-        btnTW.setOnClickListener(this);
+        btnTw = findViewById(R.id.buttonTw);
+        btnTw.setOnClickListener(this);
 
-        btnFYP01 = findViewById(R.id.ForgotYourPassword01);
-        btnFYP01.setOnClickListener(this);
-        btnFYP02 = findViewById(R.id.ForgotYourPassword02);
-        btnFYP02.setOnClickListener(this);
+        inputUsername = findViewById(R.id.editTextUsername);
+        inputPassword = findViewById(R.id.editTextPw);
 
-        btnSI = findViewById(R.id.SignInButton);
-        btnSI.setOnClickListener(this);
+        forgotPwLeft = findViewById(R.id.forgotPwLeft);
+        forgotPwLeft.setOnClickListener(this);
+        forgotPwRight = findViewById(R.id.forgotPwRight);
+        forgotPwRight.setOnClickListener(this);
 
-        inputName = findViewById(R.id.editName);
-        inputName.setClickable(true);
-
-        inputPW = findViewById(R.id.editPassword);
-        inputPW.setClickable(true);
-
-        tvSI = findViewById(R.id.SignIn);
-
+        signIn = findViewById(R.id.signInTV);
+        signIn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == btnFB.getId()) {
+        if(view.getId() == btnFB.getId()) {
             // neuen View laden
             // 1. Parameter von wo aufgerufen wird
             // 2. Parameter was aufgerufen werden soll (Zielactivity)
             // Expliziter Intent
 
             Intent fbIntent = new Intent(MainActivity.this, FacebookActivity.class);
-            fbIntent.putExtra("Username","ike");
-            fbIntent.putExtra("pw","123");
-
+            // Werte dem Intent mitgeben
+            fbIntent.putExtra("username", "ike");
+            fbIntent.putExtra("pw", "geheim123");
             startActivity(fbIntent);
 
-            Log.i("XXX","Facebook Button geklickt!");
+            Log.i("XXX", "Facebook Button geklickt");
         }
-        else if(view.getId() == btnTW.getId()) {
+        else if(view.getId() == btnTw.getId()) {
 
             Intent twIntent = new Intent(MainActivity.this, TwitterActivity.class);
+            // Werte dem Intent mitgeben
             startActivity(twIntent);
 
-            Log.i("XXX","Twitter Button geklickt!");
+            Log.i("XXX", "Twitter Button geklickt");
         }
-        else if(view.getId() == btnFYP01.getId() || view.getId() == btnFYP02.getId()) {
-
-            Intent fypIntent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
-            startActivity(fypIntent);
-
-            Log.i("XXX","ForgotYourPassword01 Button geklickt!");
+        else if(view.getId() == forgotPwLeft.getId() || view.getId() == forgotPwRight.getId()) {
+            Intent twIntent = new Intent(MainActivity.this, ForgotPwActivity.class);
+            startActivity(twIntent);
+            Log.i("XXX", "forgotPwLeft geklickt");
         }
-        else if(view.getId() == btnSI.getId()) {
+        else if(view.getId() == signIn.getId()) {
+            Log.i("XXX", "SignIn geklickt");
 
-            Intent signInIntent = new Intent(MainActivity.this, SignInActivity.class);
-
-            String username = inputName.getText().toString();
-            String pw = inputPW.getText().toString();
-
-            checkLogInData(username, pw, signInIntent);
-
-            Log.i("XXX","SignInButton Button geklickt!");
-        }
-        else {
-            Log.i("XXX", "Nix geklickt!");
-        }
-    }
-    private void checkLogInData(String user,String pw, Intent signInIntent) {
-        if (user.equalsIgnoreCase("ike") && pw.equalsIgnoreCase("123")) {
-            startActivity(signInIntent);
-        } else {
-            System.out.println("Falsches Password!");
-            Intent reject = new Intent(MainActivity.this, RejectActivity.class);
-            startActivity(reject);
+            // Werte aus EditTexts herauslesen und speichern
+            String username = inputUsername.getText().toString();
+            String pw = inputPassword.getText().toString();
+            try (DatabaseHelperOpen dbHelperOpen = new DatabaseHelperOpen(getApplicationContext())){
+                dbHelperOpen.createDataBase();
+                User foundedUser = dbHelperOpen.getUserByUsername(username);
+                
+                // TODO überprüfen des gefundenen Userobjekts
+                Intent mainIntent = new Intent(MainActivity.this, MainMenuActivity.class);
+                // Werte dem Intent mitgeben
+                mainIntent.putExtra("username", username);
+                mainIntent.putExtra("pw", pw);
+                startActivity(mainIntent);
+            }catch (Exception e) {
+                    throw new RuntimeException(e);
+            }
         }
     }
 }

@@ -19,8 +19,10 @@ public class FacebookActivity extends AppCompatActivity implements View.OnClickL
     // 1. Javaelemente anlegen
     EditText inputUsername, inputPassword;
     Button anmeldeBTN;
-    String nameDB = "BenFB";
-    String pwDB = "!Pw123";
+
+    private String nameDB = "ichFB";
+    private String pwDB = "Ghh123!";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,14 @@ public class FacebookActivity extends AppCompatActivity implements View.OnClickL
         String username = inputUsername.getText().toString();
         String pw = inputPassword.getText().toString();
 
-        if (username.equals(nameDB) && pw.equals(pwDB)){
-            Intent intent = new Intent(FacebookActivity.this, MainActivity.class);
+        if(username.equals(nameDB) && pw.equals(pwDB)) {
+            Intent intent = new Intent(FacebookActivity.this, MainMenuActivity.class);
             intent.putExtra("name", username);
+
             startActivity(intent);
         }
         else {
-            Toast.makeText(getApplicationContext(), "Login Daten falsch", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Logindaten falsch", Toast.LENGTH_LONG).show();
         }
     }
 }

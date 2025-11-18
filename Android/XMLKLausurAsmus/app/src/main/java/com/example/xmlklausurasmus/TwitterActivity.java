@@ -18,8 +18,9 @@ public class TwitterActivity extends AppCompatActivity implements View.OnClickLi
     // 1. Javaelemente anlegen
     EditText inputUsername, inputPassword;
     Button anmeldeBTN;
-    String nameDB = "BenTW";
-    String pwDB = "!Pw123";
+
+    private String nameDB = "ichTw";
+    private String pwDB = "Ghh123!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +47,14 @@ public class TwitterActivity extends AppCompatActivity implements View.OnClickLi
         String username = inputUsername.getText().toString();
         String pw = inputPassword.getText().toString();
 
-        if (username.equals(nameDB) && pw.equals(pwDB)){
-            Intent intent = new Intent(TwitterActivity.this, MainActivity.class);
+        if(username.equals(nameDB) && pw.equals(pwDB)) {
+            Intent intent = new Intent(TwitterActivity.this, MainMenuActivity.class);
             intent.putExtra("name", username);
+
             startActivity(intent);
         }
         else {
-            Toast.makeText(getApplicationContext(), "Login Daten falsch", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Logindaten falsch", Toast.LENGTH_LONG).show();
         }
     }
 }

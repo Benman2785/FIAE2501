@@ -32,7 +32,7 @@ public class DatabaseHelperOpen extends SQLiteOpenHelper {
     // table USER
     private static final String USER_COLUMN_ID = "_id";
     private static final String USER_COLUMN_NAME = "username";
-    private static final String USER_COLUMN_PASSWORT = "passwort";
+    private static final String USER_COLUMN_PW = "passwort";
     private static final String USER_COLUMN_ERSTELLTAM = "erstelltam";
     private static final String USER_COLUMN_AKTIV = "aktiv";
 
@@ -90,7 +90,6 @@ public class DatabaseHelperOpen extends SQLiteOpenHelper {
 
     //Copy the database from assets
     private void copyDataBase() {
-
         FileOutputStream output = null;
         try {
             InputStream is = context.getAssets().open("databases/" + DB_NAME);
@@ -122,13 +121,16 @@ public class DatabaseHelperOpen extends SQLiteOpenHelper {
      * @return true|false
      */
     public boolean insertNewUser(User user) {
+
         SQLiteDatabase database = getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(USER_COLUMN_NAME, user.getUsername());
-        values.put(USER_COLUMN_PASSWORT, user.getPw());
-        String dateTime = user.getCalendar().get(Calendar.DAY_OF_MONTH) + "." + user.getCalendar().get(Calendar.MONTH) + "." + user.getCalendar().get(Calendar.YEAR) + " " + user.getCalendar().get(Calendar.HOUR_OF_DAY) + ":" + user.getCalendar().get(Calendar.MINUTE) + ":" + user.getCalendar().get(Calendar.SECOND);
+        values.put(USER_COLUMN_PW, user.getPw());
+        String dateTime = user.getErstelltAm().get(Calendar.DAY_OF_MONTH)
+                + "." + user.getErstelltAm().get(Calendar.MONTH)
+                + "." + user.getErstelltAm().get(Calendar.YEAR);
         values.put(USER_COLUMN_ERSTELLTAM, dateTime);
         values.put(USER_COLUMN_AKTIV, user.getAktiv());
 
@@ -141,7 +143,7 @@ public class DatabaseHelperOpen extends SQLiteOpenHelper {
     /**
      * update new user in database
      *
-     * @param user new user
+     * @param user new User
      * @return true|false
      */
     public boolean updateUser(User user) {
@@ -150,44 +152,72 @@ public class DatabaseHelperOpen extends SQLiteOpenHelper {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(USER_COLUMN_NAME, user.getUsername());
-        values.put(USER_COLUMN_PASSWORT, user.getPw());
-        String dateTime = user.getCalendar().get(Calendar.DAY_OF_MONTH) + "." + user.getCalendar().get(Calendar.MONTH) + "." + user.getCalendar().get(Calendar.YEAR) + " " + user.getCalendar().get(Calendar.HOUR_OF_DAY) + ":" + user.getCalendar().get(Calendar.MINUTE) + ":" + user.getCalendar().get(Calendar.SECOND);
+        values.put(USER_COLUMN_PW, user.getPw());
+        String dateTime = user.getErstelltAm().get(Calendar.DAY_OF_MONTH)
+                + "." + user.getErstelltAm().get(Calendar.MONTH)
+                + "." + user.getErstelltAm().get(Calendar.YEAR);
         values.put(USER_COLUMN_ERSTELLTAM, dateTime);
         values.put(USER_COLUMN_AKTIV, user.getAktiv());
 
         // Insert the new row and returning the primary key value of the new row
-        long newRowId = database.update(TABLE_USER, values, "_id=" + user.get_id(), null);
+        long newRowId = database.update(TABLE_USER, values, "username = " + user.getUsername(), null);
 
         return newRowId != -1;
     }
 
 
     /**
-     * delete new user in database
+     * delete user in database
      *
-     * @param user new user
+     * @param user delete User
      * @return true|false
      */
     public boolean deleteUser(User user) {
         SQLiteDatabase database = getWritableDatabase();
 
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(USER_COLUMN_NAME, user.getUsername());
-        values.put(USER_COLUMN_PASSWORT, user.getPw());
-        String dateTime = user.getCalendar().get(Calendar.DAY_OF_MONTH) + "." + user.getCalendar().get(Calendar.MONTH) + "." + user.getCalendar().get(Calendar.YEAR) + " " + user.getCalendar().get(Calendar.HOUR_OF_DAY) + ":" + user.getCalendar().get(Calendar.MINUTE) + ":" + user.getCalendar().get(Calendar.SECOND);
-        values.put(USER_COLUMN_ERSTELLTAM, dateTime);
-
         // Insert the new row and returning the primary key value of the new row
-        long newRowId = database.delete(TABLE_USER, "_id=?", new String[]{String.valueOf(user.get_id())} );
+        long newRowId = database.delete(TABLE_USER, "username=?", new String[]{user.getUsername()} );
 
         return newRowId != -1;
     }
+    /**
+     * get user by username
+     *
+     * @return object of user
+     * @throws ParseException couldnt pass date and time
+     */
+    public User getUserByUsername(String username) throws ParseException {
+        this.database = getReadableDatabase();
+        User user = null;
+
+        String sql = "SELECT  * FROM " + TABLE_USER + " WHERE username = " + "'" + username +"'";
+        Cursor cursorUser = database.rawQuery(sql, null);
+
+        if (cursorUser.moveToFirst()) {
+            do {
+                //String userName = cursorUser.getString(1);
+                String pw = cursorUser.getString(2);
+                String dateTime = cursorUser.getString(3);
+                SimpleDateFormat sdf =
+                        new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+                sdf.parse(dateTime);
+                Calendar cal = sdf.getCalendar();
+                cal.set(Calendar.MONTH, cal.get(Calendar.MONTH)+1);
+                int aktiv = cursorUser.getInt(4);
+
+                user = new User(username, pw, cal, aktiv);
+            } while (cursorUser.moveToNext());
+        }
+
+        cursorUser.close();
+        return user;
+    }
+
 
     /**
-     * get all shopping entries from db
+     * get all user entries from db
      *
-     * @return list of all shopping items
+     * @return list of all users
      * @throws ParseException couldnt pass date and time
      */
     public ArrayList<User> getAllUsers() throws ParseException {
@@ -202,12 +232,14 @@ public class DatabaseHelperOpen extends SQLiteOpenHelper {
                 String username = cursorUser.getString(1);
                 String pw = cursorUser.getString(2);
                 String dateTime = cursorUser.getString(3);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+                SimpleDateFormat sdf =
+                        new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
                 sdf.parse(dateTime);
                 Calendar cal = sdf.getCalendar();
                 cal.set(Calendar.MONTH, cal.get(Calendar.MONTH)+1);
                 int aktiv = cursorUser.getInt(4);
                 User user = new User(username, pw, cal, aktiv);
+
                 userList.add(user);
 
             } while (cursorUser.moveToNext());
