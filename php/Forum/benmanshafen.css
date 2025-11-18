@@ -1,0 +1,303 @@
+/* benmanshafen.css */
+
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+code {
+    font-family: 'Oswald', Arial, sans-serif;;
+    font-size: 88%;
+    color: #fff;
+    text-shadow: 3px 3px 0px #000;
+    display: block;
+
+    background: rgba(0, 0, 0, 0.6); /* halbtransparentes Schwarz */
+    border: 1px solid #999;
+    padding: 10px;
+    margin: 10px 0;
+
+    border-radius: 4px;
+    white-space: pre-wrap; /* für bessere Darstellung bei langen Zeilen */
+}
+
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+    grid-template-rows: 3% 20% 72.5% 4.5%; /* Header, Main content, Footer */
+    height: 100%;
+    width: 100%;
+}
+
+/* Header Styles */
+.header1, .header2, .header3, .header4, .header5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Oswald', Arial, sans-serif;
+    background-image: url('bck1.jpg'); /* Background image for header */
+    background-size: cover;
+    color: white; /* Text color */
+    font-weight: bold; /* Make header text bold */
+    padding: 10px 0;
+    min-width: 96px;
+    width: 100%; /* Ensures the header spans the full width */
+    border: 1px solid darkgrey;
+}
+
+.header1 a, .header2 a, .header3 a, .header4 a, .header5 a {
+    color: white; /* Text color */
+    text-decoration: none;
+    display: block;
+    padding: 10px 0; /* Vertical padding to maintain height */
+    text-align: center;
+    border: 1px solid transparent; /* Border for button effect */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%; /* Ensures the link spans the full width */
+}
+
+/* Hover effect for header links */
+.header1 a:hover, .header2 a:hover, .header3 a:hover, .header4 a:hover, .header5 a:hover {
+    background-color: #444; /* Darken background on hover */
+    /* transform: scale(1.05); Slightly increase size on hover */
+    width: 100%; /* Ensures hover effect spans the full width */
+}
+
+/* Main Image (headerpic2) */
+.headerpic1, .headerpic2 {
+    width: 100%;
+    height: 100%;
+}
+
+.headerpic2 {
+    grid-column: 2 / 6;  /* Spans columns 2, 3, 4, 5 */
+    grid-row: 2 / 3;     /* Row 2 */
+    object-fit: cover;   /* Keeps the image's aspect ratio intact */
+}
+
+.headerpic1 img, .headerpic2 img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Menu Styles */
+.menu {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    background-color: #333;
+}
+
+.menu a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Oswald', Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+    background-color: #444;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu a:hover {
+    background-color: #555;
+}
+
+/* Main Content */
+.mainIframe {
+    font-family: 'Oswald', Arial, sans-serif;
+    grid-column: 2 / 6;
+    grid-row: 3 / 4;
+    border: none;
+    margin: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+iframe {
+    font-family: 'Oswald', Arial, sans-serif;
+    grid-column: 2 / 6;
+    grid-row: 3 / 4;
+    border: none;
+    display: block;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* Footer */
+.footer {
+    grid-column: 1 / 6;
+    grid-row: 4 / 5;
+    background-color: #363636;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-top: 1px solid #ccc;
+}
+
+.footer button {
+    background-color: transparent;
+    border: none;
+}
+
+.footer button img {
+    width: 40px;
+    height: auto;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    background: url(bck1.jpg) repeat-y;
+    background-size: cover;
+    font-family: 'Oswald', Arial, sans-serif;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #555 #2e2e2e;
+}
+
+/* Menü-Stile in der Sidebar */
+#sidebar nav ul {
+    display: flex;
+    flex-wrap: wrap;  /* Ermöglicht das Umbruchen der Links in mehreren Zeilen */
+    gap: 0.1em;  /* Abstand zwischen den Links */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar nav ul li {
+    min-width: 128px;
+    width: calc(50% - 2px);  /* Zwei Links pro Zeile */
+    margin: 0;    /* Entfernt den zusätzlichen Abstand, der durch margin: 1px 0 entstehen könnte */
+}
+
+#sidebar nav a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Oswald', Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+    background-color: #444;
+    border-bottom: 1px solid #ccc;
+}
+
+#sidebar nav a:hover {
+    background-color: #555;
+}
+
+/* Header Navigation Styles */
+#main-navigation ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+#main-navigation ul li a {
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+}
+#content {
+    background: url(bck2.jpg) repeat-y;
+    background-size: cover;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+/* Scrollbar */
+/* Gilt für Firefox */
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #2e2e2e;
+}
+/* Gilt für WebKit (Chrome, Edge, Safari) */
+body::-webkit-scrollbar {
+    width: 7px;
+}
+body::-webkit-scrollbar-track {
+    background: #2e2e2e;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 6px;
+    border: 1px solid #2e2e2e;
+}
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+html, body, iframe {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #2e2e2e;
+}
+iframe {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #2e2e2e;
+}
+iframe::-webkit-scrollbar {
+    width: 7px;
+}
+iframe::-webkit-scrollbar-track {
+    background: #2e2e2e;
+}
+iframe::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 6px;
+    border: 1px solid #2e2e2e;
+}
+iframe::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+
+/* Responsivität: Links einspaltig bei kleineren Geräten */
+@media (max-width: 1527px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+        grid-template-rows: 5% 20% 70% 5%; /* Header, Main content, Footer */
+        height: 100%;
+        width: 100%;
+    }
+    #sidebar nav ul {
+        display: flex;
+        flex-direction: column;      /* vertikal anordnen */
+        align-items: center;         /* horizontal zentrieren */
+        justify-content: flex-start; /* optional, von oben starten */
+    }
+    #sidebar nav ul li {
+        width: 100%;         /* nur so breit wie nötig */
+        text-align: center;  /* Text in den Links zentrieren */
+    }
+    #sidebar nav a {
+        width: 100%;         /* sorgt für gleichmäßige Link-Breite */
+        display: block;
+        text-align: center;
+    }
+}
+
