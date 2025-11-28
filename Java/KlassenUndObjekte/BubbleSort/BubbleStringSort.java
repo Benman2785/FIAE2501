@@ -12,9 +12,7 @@ public class BubbleStringSort {
             if (c1 > c2) return 1;
         }
         int caseSensitive = a.compareTo(b);
-        if (caseSensitive != 0) {
-            return caseSensitive;
-        }
+        if (caseSensitive != 0) return caseSensitive;
         if (s1.length() < s2.length()) return -1;
         if (s1.length() > s2.length()) return 1;
         return 0;
