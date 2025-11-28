@@ -1,8 +1,6 @@
 
 import java.util.Arrays;
-
 public class BubbleStringSort {
-
     public static int compareByChars(String a, String b) {
         String s1 = a.toLowerCase();
         String s2 = b.toLowerCase();
@@ -10,29 +8,17 @@ public class BubbleStringSort {
         for (int i = 0; i < minLength; i++) {
             char c1 = s1.charAt(i);
             char c2 = s2.charAt(i);
-            if (c1 < c2) {
-                return -1;
-            }
-            if (c1 > c2) {
-                return 1;
-            }
+            if (c1 < c2) return -1;
+            if (c1 > c2) return 1;
         }
-        // Wenn lower-case gleich ist → jetzt case-sensitive vergleichen!
         int caseSensitive = a.compareTo(b);
         if (caseSensitive != 0) {
             return caseSensitive;
         }
-
-        // Wenn alle Zeichen bis zur minLength gleich sind, dann nach Länge entscheiden
-        if (s1.length() < s2.length()) {
-            return -1;
-        }
-        if (s1.length() > s2.length()) {
-            return 1;
-        }
-        return 0; // komplett gleich
+        if (s1.length() < s2.length()) return -1;
+        if (s1.length() > s2.length()) return 1;
+        return 0;
     }
-
     public static void bubbleSort(String[] array) {
         boolean swapped;
         for (int i = 0; i < array.length - 1; i++) {
@@ -45,12 +31,9 @@ public class BubbleStringSort {
                     swapped = true;
                 }
             }
-            if (!swapped) {
-                break;
-            }
+            if (!swapped) break;
         }
     }
-
     public static void main(String[] args) {
         String[] words = {"banane", "Apfel", "orange", "KiWiii", "Banane", "Kiwi"};
         System.out.println("Array ungeordnet: " + Arrays.toString(words));
