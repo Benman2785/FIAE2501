@@ -1,9 +1,9 @@
-
 import java.util.Arrays;
 public class BubbleStringSort {
     public static int compareByChars(String a, String b) {
         String s1 = a.toLowerCase();
         String s2 = b.toLowerCase();
+        int caseSensitive = a.compareTo(b);
         int minLength = Math.min(s1.length(), s2.length());
         for (int i = 0; i < minLength; i++) {
             char c1 = s1.charAt(i);
@@ -11,7 +11,6 @@ public class BubbleStringSort {
             if (c1 < c2) return -1;
             if (c1 > c2) return 1;
         }
-        int caseSensitive = a.compareTo(b);
         if (caseSensitive != 0) return caseSensitive;
         if (s1.length() < s2.length()) return -1;
         if (s1.length() > s2.length()) return 1;
